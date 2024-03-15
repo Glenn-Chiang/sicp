@@ -80,7 +80,7 @@ function expmod(base, exp, m) {
 }
 
 function miller_rabin(n) {
-  a = randrange(1, n-1)
+  const a = randrange(1, n-1)
   return expmod(a, n-1, n) === a
 }
 
