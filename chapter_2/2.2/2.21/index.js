@@ -31,22 +31,30 @@ function last_pair(items) {
       : last_pair(tail(items));
 }
 
-function reverse(items) {
+function reverse_naive(items) {
   return is_null(items)
       ? null
       : append(reverse(tail(items)), pair(head(items), null));
 }
 
-function reverse_iter(items) {
+
+function reverse(items) {
   function iter(input, output) {
-      return is_null(input)
-          ? output
-          : iter(tail(input), pair(head(input), output));
+    return is_null(input)
+    ? output
+    : iter(tail(input), pair(head(input), output));
   }
   return iter(items, null);
 }
 
-// reverse_iter(list(1,4,9,16,25));
+function deep_reverse(items) {
+  function iter(input, output) {
+    return is_null(input)
+    ? output
+    : iter(tail(input), pair(reverse(head(input)), output));
+  }
+  return iter(items, null);
+}
 
 function cc(amount, coin_values) {
   return amount === 0
